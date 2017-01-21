@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}
+    New Hackathon
+{% endblock %}
+{% block head %}
+        New Hackathon
+{% endblock %}
+
+
+{% block content %}
+
+    <div class="form">
+        <form method="post" action="."> {% csrf_token %}
+        {{ form.title.errors }}
+        <input type="text" style="width:90%;" name="title" placeholder="new hackathon!"/>
+
+            {{ form.duration.errors }}
+            <label>Sponsors</label>
+            <input style="max-width: 32.5%" type='text'  placeholder="Sponsors" max="28" name="Days" />
+            <label>Announcement</label>
+            <input style="max-width: 32.5%" type='text'  placeholder="Announcement" max="24" name="Hours" />
+            <button name="Create">Create</button>
+        </form>
+    </div>
+
+
+        
+{% endblock %}

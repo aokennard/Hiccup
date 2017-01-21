@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+{% block title %}
+    Login
+{% endblock %}
+{% block head %}
+        Hiccup
+{% endblock %}
+
+
+    {% block content %}
+        <div class="spacer">
+            <span style="float:left;font-size:30px;cursor:pointer" onclick="openNav()">&#9776;</span>
+            <h1>Hiccup</h1>
+            <table align="center">
+
+                <colgroup>
+                    <col span="3">
+                </colgroup>
+                        {% if query_results %}
+                            <td></td>
+                            <td>Task</td>
+                            <td>Start On</td>
+                        {% else %}
+                            <td></td>
+                            <td>Add Event Now</td>
+                        {% endif %}
+                        <td></td>
+                        <td><a href="addNew"><i style="color: dodgerblue" class="fa fa-plus"/></a></td>
+
+                </br>
+                {% for item in query_results %}
+
+                    <tr>
+                        <td name="color" style ="color: {{ item.color }}; font-size: 40px; padding: 0px; margin: 0px;">•</td>
+                        <td>{{ item.title }}</td>
+                        <td name="dueTime" style="padding-left:20px">{{ item.dueTime }}</td>
+                        <td><a href="edit/{{ item.uniqueId }}"><i class="fa fa-pencil" style="color: dimgray"/></a></td>
+                        <td><a href="delete/{{ item.uniqueId }}"><i class="fa fa-close" style="color: red"/></a></td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <div id="x"></div>
+
+
+            <div id="mySidenav" class="sidenav" style="width: 0;">
+              <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+                <h2>Welcome {{ user.username }}</h2>
+                <a href="password"> <button name="Change Password" style="font-size:20px">Change Password</button></a>
+                <form action="/logout/">
+                    <button name="Log Out" style="font-size:20px">Log Out</button>
+                </form>
+            </div>
+
+            <script>
+            function openNav() {
+                document.getElementById("mySidenav").style.width = "250px";
+            }
+
+            function closeNav() {
+                document.getElementById("mySidenav").style.width = "0";
+            }
+            </script>
+        </div>
+
+    {% endblock %}
